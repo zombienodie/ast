@@ -1,0 +1,2 @@
+
+T:\>find "asdasdasdsa" "T:\1.txt"  1>T:\KQ.txt 
