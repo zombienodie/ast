@@ -2,7 +2,7 @@ Set WshShell = WScript.CreateObject("WScript.Shell")
 dim fs:set fs= CreateObject("Scripting.FileSystemObject")
 Const ForReading = 1, ForWriting = 2, ForAppending = 8
 ' random
-Dim rd1, rd2 :rd1 = 1  : rd2 = 37
+Dim rd1, rd2
 ' 'xoa file
 ' fs.DeleteFile GetNameFolder(strFileData) & "/find.bat"
 MyArrayTagHTML = Array("<a href="""" target=""" & "_blank" & """></a>", "<iframe src =""""></iframe>", "<img src="""" alt=""" & "image" & """>"," them tu do")
@@ -29,6 +29,9 @@ Do
 	Elseif strSearch <> "" And strSearch <> ".add" And strSearch <> ".offline" And fs.FileExists(strFileData) And strSearch <> ".restart" And strSearch <> ".drop" And strSearch <> ".call" And strSearch <> ".source" And strSearch <> ".bat"  Then
 		'kiem tra su ton tai cua thu muc
 		if fs.FolderExists(GetNameFolder(strFileData)) Then
+			'lay so chay random chay anh nen
+			rd1 = 1  : rd2 = DemFile(GetNameFolder(strFileData) & "/BG") 
+
 			'dung 1 giay
 			WScript.Sleep(1000)
 			
@@ -231,4 +234,14 @@ End Function
 Function GetRd(min, max)
 	Randomize
 	GetRd = (Int((max-min+1)*Rnd+min))
+End Function
+
+' dem file
+Function DemFile(strNameFolder)
+	Set Folder = fs.GetFolder(strNameFolder)
+	counter = 0
+	For Each File In Folder.Files
+		counter = counter + 1
+	Next
+	DemFile = counter
 End Function
